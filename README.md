@@ -12,10 +12,10 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/left_small.jpg "Left camera"
-[image2]: ./examples/center_small.jpg "Center camera"
-[image3]: ./examples/right_small.jpg "Right camera"
-[image4]: ./examples/placeholder_small.png "Architecture"
+[image1]: ./imgs/left.jpg "Left camera"
+[image2]: ./imgs/center.jpg "Center camera"
+[image3]: ./imgs/right.jpg "Right camera"
+[image4]: ./imgs/model.png "Architecture"
 
 ## Rubric Points
 ###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
