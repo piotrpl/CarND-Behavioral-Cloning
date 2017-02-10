@@ -3,7 +3,7 @@
 **Behavrioal Cloning Project**
 
 The goals / steps of this project are the following:
-* Use the simulator to collect data of good driving behavior
+* Use the simulator to collect data of good driving behavior or use provided dataset
 * Build, a convolution neural network in Keras that predicts steering angles from images
 * Train and validate the model with a training and validation set
 * Test that the model successfully drives around track one without leaving the road
@@ -95,7 +95,7 @@ Here is a visualization of the architecture (note: visualizing the architecture 
 
 ![alt text][image1]
 
-####3. Creation of the Training Set & Training Process
+####3. Training Set & Training Process
 
 For training I used Udacity provided dataset composed of 24108 images representing images capture by the left, center and right cameras. Here are examples of images from left, center and right camers:
 
