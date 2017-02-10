@@ -70,13 +70,28 @@ For details about how I created the training data, see the next section.
 
 ###Model Architecture and Training Strategy
 
+------
+My model consists of a convolution neural network with 3x3 filter sizes and depths between 32 and 128 (model.py lines 18-24) 
+
+The model includes RELU layers to introduce nonlinearity (code line 20), and the data is normalized in the model using a Keras lambda layer (code line 18). 
+
+------
+
+
 ####1. Solution Design Approach
 
-The overall strategy for deriving a model architecture was to ...
+Given that the main task of this project was to predict steering angles the most appropriate architecture to use is convolutional neural network (CNN). 
+There has been prior work done to predict vehicle steering angles from camera images, such as NVIDIA's "End to End Learning for Self-Driving Cars" (http://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf), and comma.ai's steering angle prediction model (https://github.com/commaai/research/blob/master/train_steering_model.py). 
 
-My first step was to use a convolution neural network model similar to the ... I thought this model might be appropriate because ...
+In this project, I chose to use NVIDIA's model and train it using dataset provided by Udacity. The NVIDIA's model is not a complex and well documented model.
 
-In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
+In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. 
+In the final solution I have used 90% of dataset as a training set and the 10% as a validation set.
+When I applied recommended data split 80/20 or 70/30 my model could not drive the car through the whole track successfuly.
+
+
+
+I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
 
 To combat the overfitting, I modified the model so that ...
 
