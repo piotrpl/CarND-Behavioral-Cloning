@@ -12,9 +12,9 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/left.jpg "Left camera"
-[image2]: ./examples/center.jpg "Center camera"
-[image3]: ./examples/right.jpg "Right camera"
+[image1]: ./examples/left_small.jpg "Left camera"
+[image2]: ./examples/center_small.jpg "Center camera"
+[image3]: ./examples/right_small.jpg "Right camera"
 [image4]: ./examples/placeholder_small.png "Architecture"
 
 ## Rubric Points
@@ -94,7 +94,7 @@ Here is a visualization of the architecture (note: visualizing the architecture 
 
 ####3. Training Set & Training Process
 
-For training I used Udacity provided dataset composed of 24108 images representing images capture by the left, center and right cameras. Here are examples of images from left, center and right camers:
+For training I used Udacity provided dataset composed of 24108 samples representing images captured by the left, center and right cameras. Here are examples of images from those trhee points of view:
 
 ![alt text][image1]
 ![alt text][image2]
