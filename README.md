@@ -120,5 +120,5 @@ I used an adam optimizer so that manually training the learning rate wasn't nece
 
 ###Fututre considerations
 * Implement the same solution using comma.ai model. It would be interesting to compare the two models.
-* Use of ELU's instead of the popular ReLU's for activation.
-* Manage spee according to the steering angle. 
+* Use ELU's instead of the ReLU's for activation. It would be beneficial to have comparison data backed by this use case.
+* Manage speed according to the steering angle. I expect this could help keeping the car from drifting away from the center or the road.
