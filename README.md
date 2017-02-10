@@ -48,34 +48,26 @@ The model.py file contains the code for training and saving the convolution neur
 
 ####1. An appropriate model arcthiecture has been employed
 
-My model consists of a convolution neural network with 3x3 filter sizes and depths between 32 and 128 (model.py lines 18-24) 
-
-The model includes RELU layers to introduce nonlinearity (code line 20), and the data is normalized in the model using a Keras lambda layer (code line 18). 
+My model consists of a normalization layer and 5 convolution layers followe by trhee fully connected layers (model.py lines 86-111). 
+In order to introduce nonlinearity RELU activation is applied on all model layers.
 
 ####2. Attempts to reduce overfitting in the model
 
-The model contains dropout layers in order to reduce overfitting (model.py lines 21). 
+The model contains dropout layers in order to reduce overfitting (model.py e.g. line 91). 
 
-The model was trained and validated on different data sets to ensure that the model was not overfitting (code line 10-16). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
+The model was trained and validated on different data sets to ensure that the model was not overfitting (code line 133-142). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
 
 ####3. Model parameter tuning
 
-The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 25).
+The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 117).
 
 ####4. Appropriate training data
 
-Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road ... 
+As a training data I used dataset provided by Udacity. 
 
-For details about how I created the training data, see the next section. 
+For details about how I worked with the training data, see the next section. 
 
 ###Model Architecture and Training Strategy
-
-------
-My model consists of a convolution neural network with 3x3 filter sizes and depths between 32 and 128 (model.py lines 18-24) 
-
-The model includes RELU layers to introduce nonlinearity (code line 20), and the data is normalized in the model using a Keras lambda layer (code line 18). 
-
-------
 
 
 ####1. Solution Design Approach
@@ -86,24 +78,18 @@ There has been prior work done to predict vehicle steering angles from camera im
 In this project, I chose to use NVIDIA's model and train it using dataset provided by Udacity. The NVIDIA's model is not a complex and well documented model.
 
 In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. 
-In the final solution I have used 90% of dataset as a training set and the 10% as a validation set.
-When I applied recommended data split 80/20 or 70/30 my model could not drive the car through the whole track successfuly.
-
-
-
-I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
-
-To combat the overfitting, I modified the model so that ...
-
-Then I ... 
-
-The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track... to improve the driving behavior in these cases, I ....
-
-At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
+My first model was overfitting. In orer to to combat this overfitting I have introduced dropout layers. This approach helped tremendously and let the vehicle drive autonomously around the track one without leaving the road.
 
 ####2. Final Model Architecture
 
-The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes ...
+The final model architecture (model.py lines 86-111) consisted of 9 layers, including:
+* a normalization layer
+* 5 convolutional layers
+* 3 fully connected layers
+
+Data is normalized in the model using Keras lambda layer.
+The next three convolution layers used 2x2 stried and 5x5 kernel, the last two convolutional layers where non-strided with 3x3 kernel. The three fully connected layers followed the convolution ones outputing the steering angle (drive.py line 111). 
+
 
 Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
 
@@ -111,28 +97,26 @@ Here is a visualization of the architecture (note: visualizing the architecture 
 
 ####3. Creation of the Training Set & Training Process
 
-To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
+For training I used Udacity provided dataset composed of 24108 images representing images capture by the left, center and right cameras. Here are examples of images from left, center and right camers:
 
 ![alt text][image2]
-
-I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
-
 ![alt text][image3]
 ![alt text][image4]
-![alt text][image5]
 
-Then I repeated this process on track two in order to get more data points.
+In the final solution 90% of the dataset was used as a training set and 10% as the validation set. When I applied recommended data split 80/20 or 70/30 my model could not drive the car through the whole track successfuly.
 
-To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
+Data processing and image augmentation is built into a geneator using keras fit_generator which allows to work with large amout of data. The whole dataset is not loaded into mememory but rather it is batches allowing the generator to run parallel to the model.
+The following steps are taken when processing a file:
 
-![alt text][image6]
-![alt text][image7]
+__Random selection__: The dataset contains data from three camera views: center, left and right. The view used for training is randomly chosed from the three. When using left of right view images, 0.25 is added or subracted respectively, to the steering angles.
 
-Etc ....
+__Minimise jitter and compensate for steering angles__: Image is randomly translated into the left or right view and compensated for the translation in the steering angles with 0.008 per pixel of translation. Then, the region of iterested is cropped out.
 
-After the collection process, I had X number of data points. I then preprocessed this data by ...
+__Random flip__: Images are randomly flipped together with the change of the sign (+/-) of the steering agles in other to balance left and right images.
 
+__Brightness augmentation__: By converting image to HSV channel and randomly scaling the V channel different light conditions e.g. shadow are simulated are simulated.
 
-I finally randomly shuffled the data set and put Y% of the data into a validation set. 
+During training I have tried using various number of epochs (from 10 to 30) but given the results I have settled on 10 as the ideal number. Similary I have tried applying different values for the Droupout (from 0.1 to 0.5) but the value of 0.2 provided best results.
+I tried applygling l2 regularization on the first and other layers with different values (from 0.001 to 0.01) but again for this particualr case not having regularization allowed my model to drive the car through the whole track.
 
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
+I used an adam optimizer so that manually training the learning rate wasn't necessary.
