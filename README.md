@@ -45,7 +45,7 @@ The model.py file contains the code for training and saving the convolution neur
 
 ####1. An appropriate model arcthiecture has been employed
 
-My model consists of a normalization layer and 5 convolution layers followe by trhee fully connected layers (model.py lines 86-111). 
+My model consists of a normalization layer and 5 convolution layers followed by the three fully connected layers (model.py lines 86-111). 
 In order to introduce nonlinearity RELU activation is applied on all model layers.
 
 ####2. Attempts to reduce overfitting in the model
@@ -64,7 +64,7 @@ As a training data I used dataset provided by Udacity.
 
 For details about how I worked with the training data, see the next section. 
 
-###Model Architecture and Training Strategy
+###Model Architecture and Training Strategy - Process
 
 
 ####1. Solution Design Approach
@@ -75,17 +75,17 @@ There has been prior work done to predict vehicle steering angles from camera im
 In this project, I chose to use NVIDIA's model and train it using dataset provided by Udacity. The NVIDIA's model is not a complex and well documented model.
 
 In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. 
-My first model was overfitting. In orer to to combat this overfitting I have introduced dropout layers. This approach helped tremendously and let the vehicle drive autonomously around the track one without leaving the road.
+My first model was overfitting and in orer to combat this I have introduced dropout layers. This approach helped tremendously and let the vehicle drive autonomously around the track one without leaving the road.
 
 ####2. Final Model Architecture
 
 The final model architecture (model.py lines 86-111) consisted of 9 layers, including:
-* a normalization layer
+* normalization layer
 * 5 convolutional layers
 * 3 fully connected layers
 
 Data is normalized in the model using Keras lambda layer.
-The next three convolution layers used 2x2 stried and 5x5 kernel, the last two convolutional layers where non-strided with 3x3 kernel. The three fully connected layers followed the convolution ones outputing the steering angle (drive.py line 111). 
+The next three convolution layers are 2x2 strided with 5x5 kernel, the last two convolutional layers are non-strided with 3x3 kernel. The three fully connected layers, followed the convolution ones outputing the steering angle (drive.py line 111). 
 
 
 Here is a visualization of the architecture:
@@ -94,7 +94,7 @@ Here is a visualization of the architecture:
 
 ####3. Training Set & Training Process
 
-For training I used Udacity provided dataset composed of 24108 samples representing images captured by the left, center and right cameras. Here are examples of images from those trhee points of view:
+For training I used Udacity provided dataset composed of 24108 samples representing images captured from the left, center and right cameras. Here are examples of images from those trhee points of view:
 
 ![alt text][image1]
 ![alt text][image2]
@@ -102,7 +102,7 @@ For training I used Udacity provided dataset composed of 24108 samples represent
 
 In the final solution 90% of the dataset was used as a training set and 10% as the validation set. When I applied recommended data split 80/20 or 70/30 my model could not drive the car through the whole track successfuly.
 
-Data processing and image augmentation is built into a geneator using keras fit_generator which allows to work with large amout of data. The whole dataset is not loaded into mememory but rather it is batches allowing the generator to run parallel to the model.
+Data processing and image augmentation is built into the geneator, using keras fit_generator which allows to work with large amout of data. The whole dataset is not loaded into mememory but rather it is batched allowing the generator to run parallel to the model.
 The following steps are taken when processing a file:
 
 __Random selection__: The dataset contains data from three camera views: center, left and right. The view used for training is randomly chosed from the three. When using left of right view images, 0.25 is added or subracted respectively, to the steering angles.
@@ -121,4 +121,6 @@ I used an adam optimizer so that manually training the learning rate wasn't nece
 ###Fututre considerations
 * Implement the same solution using comma.ai model. It would be interesting to compare the two models.
 * Use ELU's instead of the ReLU's for activation. It would be beneficial to have comparison data backed by this use case.
-* Manage speed according to the steering angle. I expect this could help keeping the car from drifting away from the center or the road.
+* Try using l2 regularization. I believe that this could further smoothen out car behaviour.
+* Manage speed according to the steering angle. I expect this could help minimise car jittering.
+* Use smaller range of values than [-0.25, 0.25] when selecting views from side cameras. I expect this could further minimise car jittering.
