@@ -88,7 +88,7 @@ Data is normalized in the model using Keras lambda layer.
 The next three convolution layers used 2x2 stried and 5x5 kernel, the last two convolutional layers where non-strided with 3x3 kernel. The three fully connected layers followed the convolution ones outputing the steering angle (drive.py line 111). 
 
 
-Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
+Here is a visualization of the architecture:
 
 ![alt text][image4]
 
@@ -117,3 +117,8 @@ During training I have tried using various number of epochs (from 10 to 30) but 
 I tried applygling l2 regularization on the first and other layers with different values (from 0.001 to 0.01) but again for this particualr case not having regularization allowed my model to drive the car through the whole track.
 
 I used an adam optimizer so that manually training the learning rate wasn't necessary.
+
+###Fututre considerations
+* Implement the same solution using comma.ai model. It would be interesting to compare the two models.
+* Use ELU's instead of the ReLU's for activation. It would be beneficial to have comparison data backed by this use case.
+* Manage speed according to the steering angle. I expect this could help keeping the car from drifting away from the center or the road.
