@@ -117,10 +117,3 @@ During training I have tried using various number of epochs (from 10 to 30) but 
 I tried applygling l2 regularization on the first and other layers with different values (from 0.001 to 0.01) but again for this particualr case not having regularization allowed my model to drive the car through the whole track.
 
 I used an adam optimizer so that manually training the learning rate wasn't necessary.
-
-###Fututre considerations
-* Implement the same solution using comma.ai model. It would be interesting to compare the two models.
-* Use ELU's instead of the ReLU's for activation. It would be beneficial to have comparison data backed by this use case.
-* Try using l2 regularization. I believe that this could further smoothen out car behaviour.
-* Manage speed according to the steering angle. I expect this could help minimise car jittering.
-* Use smaller range of values than [-0.25, 0.25] when selecting views from side cameras. I expect this could further minimise car jittering.
