@@ -90,15 +90,15 @@ The next three convolution layers used 2x2 stried and 5x5 kernel, the last two c
 
 Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
 
-![alt text][image1]
+![alt text][image4]
 
 ####3. Training Set & Training Process
 
 For training I used Udacity provided dataset composed of 24108 images representing images capture by the left, center and right cameras. Here are examples of images from left, center and right camers:
 
+![alt text][image1]
 ![alt text][image2]
 ![alt text][image3]
-![alt text][image4]
 
 In the final solution 90% of the dataset was used as a training set and 10% as the validation set. When I applied recommended data split 80/20 or 70/30 my model could not drive the car through the whole track successfuly.
 
