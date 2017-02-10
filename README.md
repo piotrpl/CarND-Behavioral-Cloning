@@ -12,9 +12,9 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/left_small.jpg "Left camera"
-[image2]: ./examples/center_small.jpg "Center camera"
-[image3]: ./examples/right_small.jpg "Right camera"
+[image1]: ./examples/left.jpg "Left camera"
+[image2]: ./examples/center.jpg "Center camera"
+[image3]: ./examples/right.jpg "Right camera"
 [image4]: ./examples/placeholder_small.png "Architecture"
 
 ## Rubric Points
